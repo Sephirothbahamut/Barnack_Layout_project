@@ -13,10 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Library">
+      <UniqueIdentifier>{7322502c-9ceb-4486-9085-5d093e0c1396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Layout">
+      <UniqueIdentifier>{3cf76826-5578-4feb-89eb-1ec78f25c626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Layout\containers">
+      <UniqueIdentifier>{81cfa79d-f40a-4b31-b6b1-8ab39c1de217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Layout\wrappers">
+      <UniqueIdentifier>{36d612fa-0afc-4e9a-9845-cf9af90aa926}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="quick_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Library\include\barnack\layout\base_types.h">
+      <Filter>Library\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\core.h">
+      <Filter>Library\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\containers\stack.h">
+      <Filter>Library\Layout\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\containers\vertical.h">
+      <Filter>Library\Layout\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\containers\common.h">
+      <Filter>Library\Layout\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\containers\grid.h">
+      <Filter>Library\Layout\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\containers\horizontal.h">
+      <Filter>Library\Layout\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrappers\padding.h">
+      <Filter>Library\Layout\wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrappers\fillers.h">
+      <Filter>Library\Layout\wrappers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
