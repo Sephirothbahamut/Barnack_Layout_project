@@ -4,9 +4,11 @@
 
 #include <barnack/layout/wrappers/fillers.h>
 #include <barnack/layout/wrappers/padding.h>
+#include <barnack/layout/containers/stack.h>
 #include <barnack/layout/containers/vertical.h>
 #include <barnack/layout/containers/horizontal.h>
 
+#include <nlohmann/json.hpp>
 
 struct ct { float r, g, b; };
 sf::Color ct_to_sf_color(const ct& c, float alpha) noexcept
@@ -19,8 +21,6 @@ sf::Color ct_to_sf_color(const ct& c, float alpha) noexcept
 		static_cast<uint8_t>(alpha * 255.f)
 		};
 	};
-
-
 
 
 
@@ -44,7 +44,7 @@ int main()
 		
 		if (auto& e{v.emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 			e.sizes.proxy_prf_x() = 100.f;
 			e.sizes.proxy_prf_y() = 100.f;
@@ -77,11 +77,11 @@ int main()
 	if (auto& v{h.emplace<barnack::layout::containers::vertical>()})
 		{
 		v.sizes.proxy_min_x() = 500.f;
-		v.sizes.proxy_max_x() = 500.f;
+		//v.sizes.proxy_max_x() = 500.f;
 
 		if (auto& e{v.emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 			e.sizes.proxy_prf_x() = 200.f;
 			e.sizes.proxy_prf_y() = 100.f;
@@ -93,7 +93,7 @@ int main()
 
 			if (auto& e{p.emplace<barnack::layout::core::element>()})
 				{
-				e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 				e.sizes.proxy_prf_x() = 150.f;
 				e.sizes.proxy_prf_y() = 200.f;
@@ -105,7 +105,7 @@ int main()
 
 			if (auto& e{p.emplace<barnack::layout::core::element>()})
 				{
-				e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 				e.sizes.proxy_prf_x() = 150.f;
 				e.sizes.proxy_prf_y() = 200.f;
@@ -117,7 +117,7 @@ int main()
 
 			if (auto& e{p.emplace<barnack::layout::core::element>()})
 				{
-				e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 				e.sizes.proxy_prf_x() = 150.f;
 				e.sizes.proxy_prf_y() = 200.f;
@@ -126,10 +126,28 @@ int main()
 
 		if (auto& e{v.emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
+			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
 			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
 			e.sizes.proxy_prf_x() = 150.f;
 			e.sizes.proxy_prf_y() = 200.f;
+			}
+
+		if (auto& p{v.emplace<barnack::layout::containers::stack>()})
+			{
+			p.alignment = utils::alignment::create::centre();
+
+			if (auto& e{p.emplace<barnack::layout::core::element>()})
+				{
+				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
+				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
+				e.sizes.proxy_prf_x() = 150.f;
+				e.sizes.proxy_prf_y() = 300.f;
+				}
+			if (auto& e{p.emplace<barnack::layout::core::element>()})
+				{
+				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
+				e.sizes.proxy_max() = utils::math::vec2f{100.f, 100.f};
+				}
 			}
 		}
 
@@ -198,7 +216,15 @@ int main()
 				h.traverse(new_position, [&traversal_string] (const auto& element)
 					{
 					const std::string node_name{typeid(element).name()};
-					traversal_string += node_name + '\n';
+					const std::string node_properties
+						{
+						'(' +
+						"position: ("     + std::to_string(element.rect.ll()) + ", " + std::to_string(element.rect.up()) + "), " +
+						"bottom_right: (" + std::to_string(element.rect.rr()) + ", " + std::to_string(element.rect.dw()) + "), " +
+						"size: ("         + std::to_string(element.rect.w ()) + ", " + std::to_string(element.rect.h ()) + ")" + 
+						')'
+						};
+					traversal_string += node_name + ' ' + node_properties + '\n';
 					});
 				}
 			}
@@ -208,7 +234,7 @@ int main()
 
 		if (!traversal_string.empty())
 			{
-			sf::Text text{default_font, traversal_string};
+			sf::Text text{default_font, traversal_string, 16U};
 			rw.draw(text);
 			}
 		rw.display();
