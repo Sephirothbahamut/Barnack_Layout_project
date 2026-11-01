@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <barnack/window/base.h>
+
 #include <barnack/layout/wrappers/fillers.h>
 #include <barnack/layout/wrappers/padding.h>
 #include <barnack/layout/containers/stack.h>
@@ -21,7 +23,6 @@ sf::Color ct_to_sf_color(const ct& c, float alpha) noexcept
 		static_cast<uint8_t>(alpha * 255.f)
 		};
 	};
-
 
 
 
@@ -152,7 +153,72 @@ int main()
 		}
 
 
+
+
+
+
+
+
+
+
+
+
+
+	barnack::window::initializer window_initializer;
+
+
+	utils::matrix<utils::graphics::colour::rgba_u> icon_image
+		(
+		utils::math::vec2s{size_t{2}, size_t{2}},
+		utils::graphics::colour::rgba_u{uint8_t{255}, uint8_t{  0}, uint8_t{  0}, uint8_t{255}},
+		utils::graphics::colour::rgba_u{uint8_t{  0}, uint8_t{255}, uint8_t{  0}, uint8_t{255}},
+		utils::graphics::colour::rgba_u{uint8_t{  0}, uint8_t{  0}, uint8_t{255}, uint8_t{255}},
+		utils::graphics::colour::rgba_u{uint8_t{255}, uint8_t{255}, uint8_t{255}, uint8_t{255}}
+		);
+	barnack::window::icon window_icon{icon_image};
+
+	barnack::window::base bwindow{barnack::window::factory
+		{
+		.title{"My Window"},
+		.minimum_size{{34, 64}},
+
+		.callbacks
+			{
+			.on_move_begin = [](barnack::window::base& window) { return barnack::window::simple_event_return_type::use_default_handler; }
+			}
+		}.create()};
+
+	window_icon.assign_to(bwindow);
+
+	//bwindow.show();
+	//while (bwindow.is_open())
+	//	{
+	//	//bwindow.wait_event();
+	//	while (bwindow.poll_event());
+	//	}
+
+	//sf::RenderWindow rw{bwindow.get()};
 	sf::RenderWindow rw{sf::VideoMode{{800u, 600u}}, "asd"};
+	window_icon.assign_to({rw.getNativeHandle()});
+	//rw.setActive(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	auto debug_draw{[&rw](const barnack::layout::core::element& element)
