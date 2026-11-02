@@ -1,157 +1,154 @@
+#include <format>
 #include <iostream>
+
+#include <utils/matrix.h>
+#include <utils/graphics/colour.h>
 
 #include <SFML/Graphics.hpp>
 
 #include <barnack/window/base.h>
 
+#include <barnack/layout/core.h>
 #include <barnack/layout/wrappers/fillers.h>
 #include <barnack/layout/wrappers/padding.h>
 #include <barnack/layout/containers/stack.h>
 #include <barnack/layout/containers/vertical.h>
 #include <barnack/layout/containers/horizontal.h>
 
-#include <nlohmann/json.hpp>
+//#include <nlohmann/json.hpp>
 
 struct ct { float r, g, b; };
 sf::Color ct_to_sf_color(const ct& c, float alpha) noexcept
 	{
 	return sf::Color
 		{
-		static_cast<uint8_t>(c.r * 255.f),
-		static_cast<uint8_t>(c.g * 255.f),
-		static_cast<uint8_t>(c.b * 255.f),
+		static_cast<uint8_t>(c.r   * 255.f),
+		static_cast<uint8_t>(c.g   * 255.f),
+		static_cast<uint8_t>(c.b   * 255.f),
 		static_cast<uint8_t>(alpha * 255.f)
 		};
 	};
 
 
 
-
-
-
+std::string element_data_as_string(const barnack::layout::core::element& element)
+	{
+	//const std::string node_properties
+	//	{
+	//	"("
+	//	"position: (" + std::to_string(element.rect_content.ll()) + ", " + std::to_string(element.rect_content.up()) + "), "
+	//	"bottom_right: (" + std::to_string(element.rect_content.rr()) + ", " + std::to_string(element.rect_content.dw()) + "), "
+	//	"size: (" + std::to_string(element.rect_content.w()) + ", " + std::to_string(element.rect_content.h()) + ")"
+	//	")"
+	//	};
+	return std::format("{} - {}", static_cast<const void*>(std::addressof(element)), typeid(element).name()) /*+ ' ' + node_properties*/;
+	}
 
 int main()
 	{
-	barnack::layout::containers::horizontal h;
-	if (auto& v{h.emplace<barnack::layout::containers::vertical>()})
+	barnack::layout::container::horizontal h;
+	if (auto& v{h.add_slot().emplace<barnack::layout::container::vertical>()})
 		{
-		if (auto& e{v.emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-			e.sizes.proxy_prf_x() = 100.f;
-			e.sizes.proxy_prf_y() = 200.f;
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 100.f;
+			e.custom_sizes.y.prf() = 200.f;
 			}
 		
-		if (auto& e{v.emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-			e.sizes.proxy_prf_x() = 100.f;
-			e.sizes.proxy_prf_y() = 100.f;
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 100.f;
+			e.custom_sizes.y.prf() = 100.f;
 			}
 		}
-	if (auto& e{h.emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
 		{
-		e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
-		e.sizes.proxy_prf() = utils::math::vec2f{32.f,  32.f};
-		e.sizes.proxy_max() = utils::math::vec2f{64.f,  64.f};
+		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
+		e.custom_sizes.prf() = utils::math::vec2f{32.f,  32.f};
+		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
 		{
-		e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
-		e.sizes.proxy_prf() = utils::math::vec2f{48.f,  48.f};
-		e.sizes.proxy_max() = utils::math::vec2f{64.f,  64.f};
+		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
+		e.custom_sizes.prf() = utils::math::vec2f{48.f,  48.f};
+		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
 		{
-		e.sizes.proxy_min() = utils::math::vec2f{32.f,  32.f};
-		e.sizes.proxy_prf() = utils::math::vec2f{64.f,  64.f};
-		e.sizes.proxy_max() = utils::math::vec2f{64.f,  64.f};
+		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
+		e.custom_sizes.prf() = utils::math::vec2f{64.f,  64.f};
+		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
 		{
-		e.sizes.proxy_min() = utils::math::vec2f{0.f, 0.f};
-		e.sizes.proxy_prf() = utils::math::vec2f{0.f, 0.f};
-		e.sizes.proxy_max() = utils::math::vec2f{utils::math::constants::finf, utils::math::constants::finf};
+		e.custom_sizes.min() = utils::math::vec2f{0.f, 0.f};
+		e.custom_sizes.prf() = utils::math::vec2f{0.f, 0.f};
+		e.custom_sizes.max() = utils::math::vec2f{utils::math::constants::finf, utils::math::constants::finf};
 		}
-	if (auto& v{h.emplace<barnack::layout::containers::vertical>()})
+	 
+	if (auto& v{h.add_slot().emplace<barnack::layout::container::vertical>()})
 		{
-		v.sizes.proxy_min_x() = 500.f;
-		//v.sizes.proxy_max_x() = 500.f;
-
-		if (auto& e{v.emplace<barnack::layout::core::element>()})
+		v.custom_sizes.x.min() = 500.f;
+		//v.custom_sizes.x.max() = 500.f;
+	
+		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
 			{
-			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-			e.sizes.proxy_prf_x() = 200.f;
-			e.sizes.proxy_prf_y() = 100.f;
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 200.f;
+			e.custom_sizes.y.prf() = 100.f;
 			}
-
-		if (auto& p{v.emplace<barnack::layout::wrappers::filler_horizontal>()})
+		
+		if (auto& e{v.add_slot(utils::alignment::horizontal::left).emplace<barnack::layout::core::element>()})
 			{
-			p.alignment = utils::alignment::horizontal::left;
-
-			if (auto& e{p.emplace<barnack::layout::core::element>()})
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 150.f;
+			e.custom_sizes.y.prf() = 200.f;
+			}
+		if (auto& e{v.add_slot(utils::alignment::horizontal::centre).emplace<barnack::layout::core::element>()})
+			{
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 150.f;
+			e.custom_sizes.y.prf() = 200.f;
+			}
+		if (auto& e{v.add_slot(utils::alignment::horizontal::right).emplace<barnack::layout::core::element>()})
+			{
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 150.f;
+			e.custom_sizes.y.prf() = 200.f;
+			}
+		
+		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
+			{
+			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+			e.custom_sizes.x.prf() = 150.f;
+			e.custom_sizes.y.prf() = 200.f;
+			}
+		
+		if (auto& p{v.add_slot().emplace<barnack::layout::container::stack>(utils::alignment::create::centre())})
+			{
+			if (auto& e{p.add_slot().emplace<barnack::layout::core::element>()})
 				{
-				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-				e.sizes.proxy_prf_x() = 150.f;
-				e.sizes.proxy_prf_y() = 200.f;
+				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+				e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
+				e.custom_sizes.x.prf() = 150.f;
+				e.custom_sizes.y.prf() = 300.f;
 				}
-			}
-		if (auto& p{v.emplace<barnack::layout::wrappers::filler_horizontal>()})
-			{
-			p.alignment = utils::alignment::horizontal::centre;
-
-			if (auto& e{p.emplace<barnack::layout::core::element>()})
+			if (auto& e{p.add_slot().emplace<barnack::layout::core::element>()})
 				{
-				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-				e.sizes.proxy_prf_x() = 150.f;
-				e.sizes.proxy_prf_y() = 200.f;
-				}
-			}
-		if (auto& p{v.emplace<barnack::layout::wrappers::filler_horizontal>()})
-			{
-			p.alignment = utils::alignment::horizontal::right;
-
-			if (auto& e{p.emplace<barnack::layout::core::element>()})
-				{
-				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-				e.sizes.proxy_prf_x() = 150.f;
-				e.sizes.proxy_prf_y() = 200.f;
-				}
-			}
-
-		if (auto& e{v.emplace<barnack::layout::core::element>()})
-			{
-			e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-			e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-			e.sizes.proxy_prf_x() = 150.f;
-			e.sizes.proxy_prf_y() = 200.f;
-			}
-
-		if (auto& p{v.emplace<barnack::layout::containers::stack>()})
-			{
-			p.alignment = utils::alignment::create::centre();
-
-			if (auto& e{p.emplace<barnack::layout::core::element>()})
-				{
-				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-				e.sizes.proxy_max() = utils::math::vec2f{320.f, 320.f};
-				e.sizes.proxy_prf_x() = 150.f;
-				e.sizes.proxy_prf_y() = 300.f;
-				}
-			if (auto& e{p.emplace<barnack::layout::core::element>()})
-				{
-				e.sizes.proxy_min() = utils::math::vec2f{ 32.f,  32.f};
-				e.sizes.proxy_max() = utils::math::vec2f{100.f, 100.f};
+				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
+				e.custom_sizes.max() = utils::math::vec2f{100.f, 100.f};
 				}
 			}
 		}
-
 
 
 
@@ -177,18 +174,18 @@ int main()
 		);
 	barnack::window::icon window_icon{icon_image};
 
-	barnack::window::base bwindow{barnack::window::factory
-		{
-		.title{"My Window"},
-		.minimum_size{{34, 64}},
+	//barnack::window::base bwindow{barnack::window::factory
+	//	{
+	//	.title{"My Window"},
+	//	.minimum_size{{34, 64}},
+	//
+	//	.callbacks
+	//		{
+	//		.on_move_begin = [](barnack::window::base& window) { return barnack::window::simple_event_return_type::use_default_handler; },
+	//		}
+	//	}.create()};
 
-		.callbacks
-			{
-			.on_move_begin = [](barnack::window::base& window) { return barnack::window::simple_event_return_type::use_default_handler; }
-			}
-		}.create()};
-
-	window_icon.assign_to(bwindow);
+	//window_icon.assign_to(bwindow);
 
 	//bwindow.show();
 	//while (bwindow.is_open())
@@ -200,8 +197,7 @@ int main()
 	//sf::RenderWindow rw{bwindow.get()};
 	sf::RenderWindow rw{sf::VideoMode{{800u, 600u}}, "asd"};
 	window_icon.assign_to({rw.getNativeHandle()});
-	//rw.setActive(true);
-
+	rw.setActive(true);
 
 
 
@@ -225,14 +221,13 @@ int main()
 		{
 		const ct color{[&element]() -> ct
 			{
-			if (dynamic_cast<const barnack::layout::core::container*>(&element)) { return {0.f, .5f, .8f}; }
-			if (dynamic_cast<const barnack::layout::core::wrapper  *>(&element)) { return {.3f, .5f, 0.f}; }
-			if (dynamic_cast<const barnack::layout::core::element  *>(&element)) { return {0.f, 1.f, 0.f}; }
+			if (dynamic_cast<const barnack::layout::core::owner  *>(&element)) { return {0.f, .5f, .8f}; }
+			if (dynamic_cast<const barnack::layout::core::element*>(&element)) { return {0.f, 1.f, 0.f}; }
 			return {1.f, 0.f, 0.f};
 			}()};
 		sf::RectangleShape rs;
-		rs.setPosition({element.rect.x(), element.rect.y()});
-		rs.setSize(sf::Vector2f{element.rect.width(), element.rect.height()});
+		rs.setPosition({element.rect_content.x(), element.rect_content.y()});
+		rs.setSize(sf::Vector2f{element.rect_content.width(), element.rect_content.height()});
 
 		rs.setOutlineThickness(1.f);
 		rs.setOutlineColor(ct_to_sf_color(color, .8f));
@@ -249,16 +244,21 @@ int main()
 		static_cast<unsigned int>(std::floor(h.get_size_min().y()))
 		});
 
-	std::string traversal_string;
 	
 	sf::Font default_font{std::filesystem::path{"Arial.ttf"}};
+
+	barnack::layout::core::traversal traversal;
+	bool traversal_changed{true};
+
+	sf::Text sf_text{default_font, "", 16U};
+	std::string traversal_string;
 
 	while (rw.isOpen())
 		{
 		if (const auto event_opt{rw.waitEvent()})
 			{
 			const auto& event{*event_opt};
-
+	
 			if (event.is<sf::Event::Closed>())
 				{
 				rw.close();
@@ -269,7 +269,7 @@ int main()
 				const utils::math::vec2f new_size{static_cast<float>(resized.size.x), static_cast<float>(resized.size.y)};
 				h.resize(new_size);
 				h.reposition({0.f, 0.f});
-
+	
 				sf::FloatRect visibleArea({0.f, 0.f}, {static_cast<float>(resized.size.x), static_cast<float>(resized.size.y)});
 				rw.setView(sf::View(visibleArea));
 				}
@@ -277,31 +277,60 @@ int main()
 				{
 				const auto& mouse_moved{*obs};
 				const utils::math::vec2f new_position{static_cast<float>(mouse_moved.position.x), static_cast<float>(mouse_moved.position.y)};
-				
-				traversal_string = "";
-				h.traverse(new_position, [&traversal_string] (const auto& element)
+
+				traversal_changed = traversal.begin(h, new_position);
+				if (traversal_changed)
 					{
-					const std::string node_name{typeid(element).name()};
-					const std::string node_properties
+					traversal_string = "";
+
+					traversal_string += "Unchanged:\n";
+					traversal.previously_visited().visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
 						{
-						'(' +
-						"position: ("     + std::to_string(element.rect.ll()) + ", " + std::to_string(element.rect.up()) + "), " +
-						"bottom_right: (" + std::to_string(element.rect.rr()) + ", " + std::to_string(element.rect.dw()) + "), " +
-						"size: ("         + std::to_string(element.rect.w ()) + ", " + std::to_string(element.rect.h ()) + ")" + 
-						')'
-						};
-					traversal_string += node_name + ' ' + node_properties + '\n';
-					});
+						traversal_string += std::string(depth, ' ');
+						traversal_string += element_data_as_string(element) + "\n";
+						return true;
+						});
+
+					traversal_string += "Entered:\n";
+					for (const auto& element : traversal.newly_visited())
+						{
+						element.visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
+							{
+							traversal_string += std::string(depth, ' ');
+							traversal_string += element_data_as_string(element) + "\n";
+							return true;
+							});
+						}
+					traversal_string += "Left:\n";
+					for (const auto& element : traversal.left())
+						{
+						element.visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
+							{
+							traversal_string += std::string(depth, ' ');
+							traversal_string += element_data_as_string(element) + "\n";
+							return true;
+							});
+						}
+
+					sf_text.setString(traversal_string);
+					std::cout << traversal_string << "\n\n==============================================================\n\n";
+					}
 				}
 			}
-
+	
 		rw.clear();
-		h.traverse(debug_draw);
+		try
+			{
+			h.visit(debug_draw);
+			}
+		catch (const std::exception&)
+			{
 
+			}
+	
 		if (!traversal_string.empty())
 			{
-			sf::Text text{default_font, traversal_string, 16U};
-			rw.draw(text);
+			rw.draw(sf_text);
 			}
 		rw.display();
 		}

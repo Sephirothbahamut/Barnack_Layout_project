@@ -147,6 +147,7 @@
     <ClInclude Include="Library\include\barnack\layout\containers\stack.h" />
     <ClInclude Include="Library\include\barnack\layout\containers\vertical.h" />
     <ClInclude Include="Library\include\barnack\layout\core.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrappers\common.h" />
     <ClInclude Include="Library\include\barnack\layout\wrappers\fillers.h" />
     <ClInclude Include="Library\include\barnack\layout\wrappers\padding.h" />
   </ItemGroup>

@@ -59,5 +59,8 @@
     <ClInclude Include="Library\include\barnack\layout\wrappers\fillers.h">
       <Filter>Library\Layout\wrappers</Filter>
     </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrappers\common.h">
+      <Filter>Library\Layout\wrappers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
