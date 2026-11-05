@@ -113,6 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +129,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,19 +139,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Library\include\barnack\layout\base_types.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\container\common.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\container\grid.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\container\horizontal.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\container\stack.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\container\vertical.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\element.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\slot.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\traversal.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\wrapper\common.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\wrapper\filler.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\wrapper\pure.cpp" />
+    <ClCompile Include="Library\include\barnack\layout\wrapper\spacing.cpp" />
     <ClCompile Include="quick_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\include\barnack\layout.h" />
+    <ClInclude Include="Library\include\barnack\layout\all.h" />
     <ClInclude Include="Library\include\barnack\layout\base_types.h" />
-    <ClInclude Include="Library\include\barnack\layout\containers\common.h" />
-    <ClInclude Include="Library\include\barnack\layout\containers\grid.h" />
-    <ClInclude Include="Library\include\barnack\layout\containers\horizontal.h" />
-    <ClInclude Include="Library\include\barnack\layout\containers\stack.h" />
-    <ClInclude Include="Library\include\barnack\layout\containers\vertical.h" />
-    <ClInclude Include="Library\include\barnack\layout\core.h" />
-    <ClInclude Include="Library\include\barnack\layout\wrappers\common.h" />
-    <ClInclude Include="Library\include\barnack\layout\wrappers\fillers.h" />
-    <ClInclude Include="Library\include\barnack\layout\wrappers\padding.h" />
+    <ClInclude Include="Library\include\barnack\layout\container.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\all.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\common.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\grid.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\horizontal.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\stack.h" />
+    <ClInclude Include="Library\include\barnack\layout\container\vertical.h" />
+    <ClInclude Include="Library\include\barnack\layout\element.h" />
+    <ClInclude Include="Library\include\barnack\layout\slot.h" />
+    <ClInclude Include="Library\include\barnack\layout\traversal.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper\all.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper\common.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper\filler.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper\pure.h" />
+    <ClInclude Include="Library\include\barnack\layout\wrapper\spacing.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

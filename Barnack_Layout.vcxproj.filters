@@ -19,48 +19,114 @@
     <Filter Include="Library\Layout">
       <UniqueIdentifier>{3cf76826-5578-4feb-89eb-1ec78f25c626}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Library\Layout\containers">
-      <UniqueIdentifier>{81cfa79d-f40a-4b31-b6b1-8ab39c1de217}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\Layout\wrappers">
+    <Filter Include="Library\Layout\wrapper">
       <UniqueIdentifier>{36d612fa-0afc-4e9a-9845-cf9af90aa926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library\Layout\container">
+      <UniqueIdentifier>{81cfa79d-f40a-4b31-b6b1-8ab39c1de217}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="quick_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\base_types.cpp">
+      <Filter>Library\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\traversal.cpp">
+      <Filter>Library\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\slot.cpp">
+      <Filter>Library\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\element.cpp">
+      <Filter>Library\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\vertical.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\common.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\grid.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\horizontal.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\stack.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\wrapper\pure.cpp">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\wrapper\spacing.cpp">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\wrapper\common.cpp">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\wrapper\filler.cpp">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\include\barnack\layout\base_types.h">
       <Filter>Library\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\core.h">
+    <ClInclude Include="Library\include\barnack\layout\traversal.h">
       <Filter>Library\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\containers\stack.h">
-      <Filter>Library\Layout\containers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\slot.h">
+      <Filter>Library\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\containers\vertical.h">
-      <Filter>Library\Layout\containers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\element.h">
+      <Filter>Library\Layout</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\containers\common.h">
-      <Filter>Library\Layout\containers</Filter>
+    <ClInclude Include="Library\include\barnack\layout.h">
+      <Filter>Library</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\containers\grid.h">
-      <Filter>Library\Layout\containers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\container\vertical.h">
+      <Filter>Library\Layout\container</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\containers\horizontal.h">
-      <Filter>Library\Layout\containers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\container\all.h">
+      <Filter>Library\Layout\container</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\wrappers\padding.h">
-      <Filter>Library\Layout\wrappers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\container\common.h">
+      <Filter>Library\Layout\container</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\wrappers\fillers.h">
-      <Filter>Library\Layout\wrappers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\container\grid.h">
+      <Filter>Library\Layout\container</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\wrappers\common.h">
-      <Filter>Library\Layout\wrappers</Filter>
+    <ClInclude Include="Library\include\barnack\layout\container\horizontal.h">
+      <Filter>Library\Layout\container</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\container\stack.h">
+      <Filter>Library\Layout\container</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper\pure.h">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper\spacing.h">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper\all.h">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper\common.h">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper\filler.h">
+      <Filter>Library\Layout\wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\all.h">
+      <Filter>Library\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\container.h">
+      <Filter>Library\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\wrapper.h">
+      <Filter>Library\Layout</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

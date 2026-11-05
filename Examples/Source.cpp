@@ -8,12 +8,12 @@
 
 #include <barnack/window/base.h>
 
-#include <barnack/layout/core.h>
-#include <barnack/layout/wrappers/fillers.h>
-#include <barnack/layout/wrappers/padding.h>
-#include <barnack/layout/containers/stack.h>
-#include <barnack/layout/containers/vertical.h>
-#include <barnack/layout/containers/horizontal.h>
+#include <barnack/layout/element.h>
+#include <barnack/layout/wrapper/filler.h>
+#include <barnack/layout/wrapper/spacing.h>
+#include <barnack/layout/container/stack.h>
+#include <barnack/layout/container/vertical.h>
+#include <barnack/layout/container/horizontal.h>
 
 //#include <nlohmann/json.hpp>
 
@@ -31,7 +31,7 @@ sf::Color ct_to_sf_color(const ct& c, float alpha) noexcept
 
 
 
-std::string element_data_as_string(const barnack::layout::core::element& element)
+std::string element_data_as_string(const barnack::layout::element& element)
 	{
 	//const std::string node_properties
 	//	{
@@ -49,7 +49,7 @@ int main()
 	barnack::layout::container::horizontal h;
 	if (auto& v{h.add_slot().emplace<barnack::layout::container::vertical>()})
 		{
-		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
@@ -57,7 +57,7 @@ int main()
 			e.custom_sizes.y.prf() = 200.f;
 			}
 		
-		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
@@ -65,25 +65,25 @@ int main()
 			e.custom_sizes.y.prf() = 100.f;
 			}
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
 		{
 		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
 		e.custom_sizes.prf() = utils::math::vec2f{32.f,  32.f};
 		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
 		{
 		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
 		e.custom_sizes.prf() = utils::math::vec2f{48.f,  48.f};
 		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
 		{
 		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
 		e.custom_sizes.prf() = utils::math::vec2f{64.f,  64.f};
 		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::core::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
 		{
 		e.custom_sizes.min() = utils::math::vec2f{0.f, 0.f};
 		e.custom_sizes.prf() = utils::math::vec2f{0.f, 0.f};
@@ -95,7 +95,7 @@ int main()
 		v.custom_sizes.x.min() = 500.f;
 		//v.custom_sizes.x.max() = 500.f;
 	
-		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
@@ -103,21 +103,21 @@ int main()
 			e.custom_sizes.y.prf() = 100.f;
 			}
 		
-		if (auto& e{v.add_slot(utils::alignment::horizontal::left).emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::left).emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
 			e.custom_sizes.x.prf() = 150.f;
 			e.custom_sizes.y.prf() = 200.f;
 			}
-		if (auto& e{v.add_slot(utils::alignment::horizontal::centre).emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::centre).emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
 			e.custom_sizes.x.prf() = 150.f;
 			e.custom_sizes.y.prf() = 200.f;
 			}
-		if (auto& e{v.add_slot(utils::alignment::horizontal::right).emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::right).emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
@@ -125,7 +125,7 @@ int main()
 			e.custom_sizes.y.prf() = 200.f;
 			}
 		
-		if (auto& e{v.add_slot().emplace<barnack::layout::core::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
 			{
 			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
@@ -135,14 +135,14 @@ int main()
 		
 		if (auto& p{v.add_slot().emplace<barnack::layout::container::stack>(utils::alignment::create::centre())})
 			{
-			if (auto& e{p.add_slot().emplace<barnack::layout::core::element>()})
+			if (auto& e{p.add_slot().emplace<barnack::layout::element>()})
 				{
 				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 				e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
 				e.custom_sizes.x.prf() = 150.f;
 				e.custom_sizes.y.prf() = 300.f;
 				}
-			if (auto& e{p.add_slot().emplace<barnack::layout::core::element>()})
+			if (auto& e{p.add_slot().emplace<barnack::layout::element>()})
 				{
 				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
 				e.custom_sizes.max() = utils::math::vec2f{100.f, 100.f};
@@ -217,17 +217,17 @@ int main()
 
 
 
-	auto debug_draw{[&rw](const barnack::layout::core::element& element)
+	auto debug_draw{[&rw](const barnack::layout::element& element)
 		{
 		const ct color{[&element]() -> ct
 			{
-			if (dynamic_cast<const barnack::layout::core::owner  *>(&element)) { return {0.f, .5f, .8f}; }
-			if (dynamic_cast<const barnack::layout::core::element*>(&element)) { return {0.f, 1.f, 0.f}; }
+			if (dynamic_cast<const barnack::layout::owner  *>(&element)) { return {0.f, .5f, .8f}; }
+			if (dynamic_cast<const barnack::layout::element*>(&element)) { return {0.f, 1.f, 0.f}; }
 			return {1.f, 0.f, 0.f};
 			}()};
 		sf::RectangleShape rs;
-		rs.setPosition({element.rect_content.x(), element.rect_content.y()});
-		rs.setSize(sf::Vector2f{element.rect_content.width(), element.rect_content.height()});
+		rs.setPosition({element.get_rect_content().x(), element.get_rect_content().y()});
+		rs.setSize(sf::Vector2f{element.get_rect_content().width(), element.get_rect_content().height()});
 
 		rs.setOutlineThickness(1.f);
 		rs.setOutlineColor(ct_to_sf_color(color, .8f));
@@ -247,7 +247,7 @@ int main()
 	
 	sf::Font default_font{std::filesystem::path{"Arial.ttf"}};
 
-	barnack::layout::core::traversal traversal;
+	barnack::layout::traversal traversal;
 	bool traversal_changed{true};
 
 	sf::Text sf_text{default_font, "", 16U};
@@ -284,7 +284,7 @@ int main()
 					traversal_string = "";
 
 					traversal_string += "Unchanged:\n";
-					traversal.previously_visited().visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
+					traversal.previously_visited().visit_with_depth([&](const barnack::layout::element& element, size_t depth)
 						{
 						traversal_string += std::string(depth, ' ');
 						traversal_string += element_data_as_string(element) + "\n";
@@ -294,7 +294,7 @@ int main()
 					traversal_string += "Entered:\n";
 					for (const auto& element : traversal.newly_visited())
 						{
-						element.visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
+						element.visit_with_depth([&](const barnack::layout::element& element, size_t depth)
 							{
 							traversal_string += std::string(depth, ' ');
 							traversal_string += element_data_as_string(element) + "\n";
@@ -304,7 +304,7 @@ int main()
 					traversal_string += "Left:\n";
 					for (const auto& element : traversal.left())
 						{
-						element.visit_with_depth([&](const barnack::layout::core::element& element, size_t depth)
+						element.visit_with_depth([&](const barnack::layout::element& element, size_t depth)
 							{
 							traversal_string += std::string(depth, ' ');
 							traversal_string += element_data_as_string(element) + "\n";
