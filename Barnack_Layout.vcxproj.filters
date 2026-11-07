@@ -42,16 +42,10 @@
     <ClCompile Include="Library\include\barnack\layout\element.cpp">
       <Filter>Library\Layout</Filter>
     </ClCompile>
-    <ClCompile Include="Library\include\barnack\layout\container\vertical.cpp">
-      <Filter>Library\Layout\container</Filter>
-    </ClCompile>
     <ClCompile Include="Library\include\barnack\layout\container\common.cpp">
       <Filter>Library\Layout\container</Filter>
     </ClCompile>
     <ClCompile Include="Library\include\barnack\layout\container\grid.cpp">
-      <Filter>Library\Layout\container</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\include\barnack\layout\container\horizontal.cpp">
       <Filter>Library\Layout\container</Filter>
     </ClCompile>
     <ClCompile Include="Library\include\barnack\layout\container\stack.cpp">
@@ -68,6 +62,12 @@
     </ClCompile>
     <ClCompile Include="Library\include\barnack\layout\wrapper\filler.cpp">
       <Filter>Library\Layout\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\container\linear.cpp">
+      <Filter>Library\Layout\container</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\include\barnack\layout\spacer.cpp">
+      <Filter>Library\Layout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +86,6 @@
     <ClInclude Include="Library\include\barnack\layout.h">
       <Filter>Library</Filter>
     </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\container\vertical.h">
-      <Filter>Library\Layout\container</Filter>
-    </ClInclude>
     <ClInclude Include="Library\include\barnack\layout\container\all.h">
       <Filter>Library\Layout\container</Filter>
     </ClInclude>
@@ -96,9 +93,6 @@
       <Filter>Library\Layout\container</Filter>
     </ClInclude>
     <ClInclude Include="Library\include\barnack\layout\container\grid.h">
-      <Filter>Library\Layout\container</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\include\barnack\layout\container\horizontal.h">
       <Filter>Library\Layout\container</Filter>
     </ClInclude>
     <ClInclude Include="Library\include\barnack\layout\container\stack.h">
@@ -128,5 +122,14 @@
     <ClInclude Include="Library\include\barnack\layout\wrapper.h">
       <Filter>Library\Layout</Filter>
     </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\container\linear.h">
+      <Filter>Library\Layout\container</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\include\barnack\layout\spacer.h">
+      <Filter>Library\Layout</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="vec.natvis" />
   </ItemGroup>
 </Project>

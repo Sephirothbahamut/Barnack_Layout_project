@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>../../Barnack_window/include;../../CPP_Utilities_MS/include;../Library/include;../../CPP_Utilities/include;../../SFML-3.1.0/include;$(VC_IncludePath);../../json-develop/single_include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>../../Barnack_window/include;../../CPP_Utilities_MS/include;../Library/include;../../CPP_Utilities/include;../../SFML-3.1.0/include;$(VC_IncludePath);../../json-develop/single_include;$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>../../SFML-3.1.0/lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>../../Barnack_window/include;../../CPP_Utilities_MS/include;../Library/include;../../CPP_Utilities/include;../../SFML-3.1.0/include;$(VC_IncludePath);../../json-develop/single_include;$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>../../Barnack_window/include;../../CPP_Utilities_MS/include;../Library/include;../../CPP_Utilities/include;../../SFML-3.1.0/include;$(VC_IncludePath);../../json-develop/single_include;$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>../../SFML-3.1.0/lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="implementations.cpp" />
     <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\vec.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

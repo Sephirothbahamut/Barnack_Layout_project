@@ -8,13 +8,7 @@
 
 #include <barnack/window/base.h>
 
-#include <barnack/layout/element.h>
-#include <barnack/layout/wrapper/filler.h>
-#include <barnack/layout/wrapper/spacing.h>
-#include <barnack/layout/container/stack.h>
-#include <barnack/layout/container/vertical.h>
-#include <barnack/layout/container/horizontal.h>
-
+#include <barnack/layout/all.h>
 //#include <nlohmann/json.hpp>
 
 struct ct { float r, g, b; };
@@ -49,103 +43,103 @@ int main()
 	barnack::layout::container::horizontal h;
 	if (auto& v{h.add_slot().emplace<barnack::layout::container::vertical>()})
 		{
-		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 100.f;
-			e.custom_sizes.y.prf() = 200.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 100.f;
+			e.constraints.y.prf() = 200.f;
 			}
 		
-		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 100.f;
-			e.custom_sizes.y.prf() = 100.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 100.f;
+			e.constraints.y.prf() = 100.f;
 			}
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::spacer>()})
 		{
-		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
-		e.custom_sizes.prf() = utils::math::vec2f{32.f,  32.f};
-		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
+		e.constraints.min() = utils::math::vec2f{32.f,  32.f};
+		e.constraints.prf() = utils::math::vec2f{32.f,  32.f};
+		e.constraints.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::spacer>()})
 		{
-		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
-		e.custom_sizes.prf() = utils::math::vec2f{48.f,  48.f};
-		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
+		e.constraints.min() = utils::math::vec2f{32.f,  32.f};
+		e.constraints.prf() = utils::math::vec2f{48.f,  48.f};
+		e.constraints.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::spacer>()})
 		{
-		e.custom_sizes.min() = utils::math::vec2f{32.f,  32.f};
-		e.custom_sizes.prf() = utils::math::vec2f{64.f,  64.f};
-		e.custom_sizes.max() = utils::math::vec2f{64.f,  64.f};
+		e.constraints.min() = utils::math::vec2f{32.f,  32.f};
+		e.constraints.prf() = utils::math::vec2f{64.f,  64.f};
+		e.constraints.max() = utils::math::vec2f{64.f,  64.f};
 		}
-	if (auto& e{h.add_slot().emplace<barnack::layout::element>()})
+	if (auto& e{h.add_slot().emplace<barnack::layout::spacer>()})
 		{
-		e.custom_sizes.min() = utils::math::vec2f{0.f, 0.f};
-		e.custom_sizes.prf() = utils::math::vec2f{0.f, 0.f};
-		e.custom_sizes.max() = utils::math::vec2f{utils::math::constants::finf, utils::math::constants::finf};
+		e.constraints.min() = utils::math::vec2f{0.f, 0.f};
+		e.constraints.prf() = utils::math::vec2f{0.f, 0.f};
+		e.constraints.max() = utils::math::vec2f{utils::math::constants::finf, utils::math::constants::finf};
 		}
 	 
 	if (auto& v{h.add_slot().emplace<barnack::layout::container::vertical>()})
 		{
-		v.custom_sizes.x.min() = 500.f;
-		//v.custom_sizes.x.max() = 500.f;
+		v.constraints.x.min() = 500.f;
+		//v.constraints.x.max() = 500.f;
 	
-		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 200.f;
-			e.custom_sizes.y.prf() = 100.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 200.f;
+			e.constraints.y.prf() = 100.f;
 			}
 		
-		if (auto& e{v.add_slot(utils::alignment::horizontal::left).emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::left).emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 150.f;
-			e.custom_sizes.y.prf() = 200.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 150.f;
+			e.constraints.y.prf() = 200.f;
 			}
-		if (auto& e{v.add_slot(utils::alignment::horizontal::centre).emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::centre).emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 150.f;
-			e.custom_sizes.y.prf() = 200.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 150.f;
+			e.constraints.y.prf() = 200.f;
 			}
-		if (auto& e{v.add_slot(utils::alignment::horizontal::right).emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot(utils::alignment::horizontal::right).emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 150.f;
-			e.custom_sizes.y.prf() = 200.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 150.f;
+			e.constraints.y.prf() = 200.f;
 			}
 		
-		if (auto& e{v.add_slot().emplace<barnack::layout::element>()})
+		if (auto& e{v.add_slot().emplace<barnack::layout::spacer>()})
 			{
-			e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-			e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-			e.custom_sizes.x.prf() = 150.f;
-			e.custom_sizes.y.prf() = 200.f;
+			e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+			e.constraints.max() = utils::math::vec2f{320.f, 320.f};
+			e.constraints.x.prf() = 150.f;
+			e.constraints.y.prf() = 200.f;
 			}
 		
 		if (auto& p{v.add_slot().emplace<barnack::layout::container::stack>(utils::alignment::create::centre())})
 			{
-			if (auto& e{p.add_slot().emplace<barnack::layout::element>()})
+			if (auto& e{p.add_slot().emplace<barnack::layout::spacer>()})
 				{
-				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-				e.custom_sizes.max() = utils::math::vec2f{320.f, 320.f};
-				e.custom_sizes.x.prf() = 150.f;
-				e.custom_sizes.y.prf() = 300.f;
+				e.constraints.min() = utils::math::vec2f{312.f,  32.f};
+				e.constraints.max() = utils::math::vec2f{820.f, 320.f};
+				e.constraints.x.prf() = 600.f;
+				e.constraints.y.prf() = 300.f;
 				}
-			if (auto& e{p.add_slot().emplace<barnack::layout::element>()})
+			if (auto& e{p.add_slot().emplace<barnack::layout::spacer>()})
 				{
-				e.custom_sizes.min() = utils::math::vec2f{ 32.f,  32.f};
-				e.custom_sizes.max() = utils::math::vec2f{100.f, 100.f};
+				e.constraints.min() = utils::math::vec2f{ 32.f,  32.f};
+				e.constraints.max() = utils::math::vec2f{100.f, 100.f};
 				}
 			}
 		}
@@ -217,7 +211,7 @@ int main()
 
 
 
-	auto debug_draw{[&rw](const barnack::layout::element& element)
+	auto debug_draw{[&rw](const barnack::layout::element& element) -> bool
 		{
 		const ct color{[&element]() -> ct
 			{
@@ -234,6 +228,7 @@ int main()
 		rs.setFillColor   (ct_to_sf_color(color, .2f));
 
 		rw.draw(rs);
+		return true;
 		}};
 
 	rw.display();
